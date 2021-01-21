@@ -3,14 +3,40 @@
 Provides a Docker image configuration for serving static iiif.lib.umd.edu
 application files, including the Mirador viewer.
 
-This Docker image extends umd-web-static-files by adding these files:
+This Docker image extends umd-web-static-files by:
 
-* an "index.html" home page
-* static Mirador viewer files from
-  [https://github.com/umd-lib/mirador-static][mirador-static]
+* Adding an "index.html" home page
+
+* Adding static Mirador viewer files from
+[https://github.com/umd-lib/mirador-static][mirador-static]
+
+* Replacing the Nginx configuration with a configuration that proxies some
+URLs to legacy IIIF servers.
 
 See [umd-web-static-files][umd-web-static-files] for more information about
 using this image.
+
+**Note**: When updating the base "umd-web-static-files" Docker image version,
+be sure to update the "docker_config/nginx/conf.d/default.conf" file to reflect
+any changes.
+
+## Docker Image
+
+To build the Docker image:
+
+```
+> docker build -t docker.lib.umd.edu/iiif-static-files:<VERSION> -f Dockerfile .
+```
+
+where \<VERSION> is the version for the image.
+
+For example, to build version 1.0.0:
+
+```
+> docker build -t docker.lib.umd.edu/iiif-static-files:1.0.0 -f Dockerfile .
+```
+
+The image should then be pushed to the UMD Nexus.
 
 ## Mirador Viewer
 
