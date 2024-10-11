@@ -36,6 +36,12 @@ For example, to build version 1.0.0:
 > docker build -t docker.lib.umd.edu/iiif-static-files:1.0.0 -f Dockerfile .
 ```
 
+Or using dockerx:
+
+```
+> docker buildx build . --builder=kube -t docker.lib.umd.edu/iiif-static-files:<VERSION> --push
+```
+
 The image should then be pushed to the UMD Nexus.
 
 ## Mirador Viewer
