@@ -14,6 +14,7 @@
 var umdMiradorOCR = true;
 var umdMiradorOCRText = '';
 var umdMiradorOCRHovered = 0;
+var iiifScheme = 'https://';
 
 $(function() {
   /**
@@ -37,6 +38,9 @@ $(function() {
   var manifestURI = '';
   var manifestPcdmID = getParamValue('manifest');
   var iiifURLPrefix = decodeURIComponent(getParamValue('iiifURLPrefix'));
+  if (iiifURLPrefix != '' && iiifURLPrefix.substr(0, iiifScheme.length) !== iiifScheme) {
+    iiifURLPrefix = iiifScheme + iiifURLPrefix;
+  }
   if (manifestPcdmID != '') {
     manifestURI = iiifURLPrefix + manifestPcdmID;
     if (iiifURLPrefix != '') {
